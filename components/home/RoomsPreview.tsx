@@ -4,6 +4,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import SectionHeader from "@/components/shared/SectionHeader";
+import { GlowCard } from "@/components/shared/GlowCard";
 
 const CheckIcon = ({ className }: { className?: string }) => (
   <svg
@@ -16,6 +17,12 @@ const CheckIcon = ({ className }: { className?: string }) => (
     <path d="M20 6 9 17l-5-5" />
   </svg>
 );
+
+const ROOM_HUE: Record<string, number> = {
+  standard: 210,  // sapphire blue
+  superior:  42,  // gold
+  family:   155,  // emerald
+};
 
 const rooms = [
   {
@@ -53,10 +60,12 @@ const rooms = [
 export default function RoomsPreview() {
   return (
     <section
-      className="py-24 px-4 bg-hg-black"
+      className="py-24 px-4"
       style={{
-        background:
-          "radial-gradient(ellipse at 50% 40%, rgba(201,168,76,0.05) 0%, #0F0D0B 60%)",
+        background: `
+          radial-gradient(ellipse at 50% 40%, rgba(201,168,76,0.07) 0%, transparent 60%),
+          linear-gradient(180deg, #450920 0%, #1E0510 10%, #1E0510 90%, #450920 100%)
+        `,
       }}
     >
       <div className="max-w-7xl mx-auto">
@@ -75,68 +84,69 @@ export default function RoomsPreview() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
-              className={[
-                "relative flex-1 max-w-sm w-full flex flex-col rounded-2xl px-7 py-8",
-                "backdrop-blur-[14px] bg-gradient-to-br shadow-xl transition-all duration-300",
-                room.isPopular
-                  ? "from-white/[0.18] to-white/[0.08] border border-hg-gold/30 ring-2 ring-hg-gold/20 scale-105 shadow-2xl shadow-hg-gold/10"
-                  : "from-white/[0.07] to-white/[0.02] border border-white/10",
-              ].join(" ")}
+              className="flex-1 max-w-sm w-full"
             >
-              {/* Most Popular badge */}
-              {room.isPopular && (
-                <div className="absolute -top-4 right-4 px-3 py-1 text-[11px] font-bold rounded-full bg-hg-gold text-hg-black tracking-wider uppercase">
-                  Most Popular
-                </div>
-              )}
-
-              {/* Plan name */}
-              <div className="mb-3">
-                <h2 className="text-[42px] font-extralight tracking-[-0.03em] text-hg-cream font-heading leading-none">
-                  {room.planName}
-                </h2>
-                <p className="text-[15px] text-hg-muted mt-2 leading-relaxed">{room.description}</p>
-              </div>
-
-              {/* Price */}
-              <div className="my-6 flex items-baseline gap-2">
-                <span className="text-[48px] font-extralight text-hg-gold font-heading leading-none">
-                  €{room.price}
-                </span>
-                <span className="text-sm text-hg-muted">/ night</span>
-              </div>
-
-              {/* Divider */}
-              <div
-                className="w-full h-px mb-5"
-                style={{
-                  background:
-                    "linear-gradient(90deg, transparent, rgba(255,255,255,0.09) 20%, rgba(255,255,255,0.22) 50%, rgba(255,255,255,0.09) 80%, transparent)",
-                }}
-              />
-
-              {/* Features */}
-              <ul className="flex flex-col gap-2.5 text-sm text-hg-cream/85 mb-8 flex-1">
-                {room.features.map((feature) => (
-                  <li key={feature} className="flex items-center gap-2.5">
-                    <CheckIcon className="text-hg-gold w-4 h-4 shrink-0" />
-                    {feature}
-                  </li>
-                ))}
-              </ul>
-
-              {/* CTA */}
-              <Link
-                href={`/booking?roomType=${room.planName}`}
-                className={[
-                  "mt-auto w-full py-2.5 rounded-xl font-semibold text-sm text-center transition-colors duration-200",
-                  room.buttonVariant === "primary"
-                    ? "bg-hg-gold hover:bg-hg-gold-light text-hg-black"
-                    : "bg-white/10 hover:bg-white/20 text-hg-cream border border-white/20",
-                ].join(" ")}
+              <GlowCard
+                featured={room.isPopular}
+                glowHue={ROOM_HUE[room.id]}
+                wrapperClassName={`h-full transition-all duration-300 ${room.isPopular ? "scale-105" : ""}`}
+                className="relative flex flex-col px-7 py-8"
               >
-                {room.buttonText}
-              </Link>
+                {/* Most Popular badge */}
+                {room.isPopular && (
+                  <div className="absolute -top-4 right-4 px-3 py-1 text-[11px] font-bold rounded-full bg-hg-gold text-hg-black tracking-wider uppercase">
+                    Most Popular
+                  </div>
+                )}
+
+                {/* Plan name */}
+                <div className="mb-3">
+                  <h2 className="text-[42px] font-extralight tracking-[-0.03em] text-hg-cream font-heading leading-none">
+                    {room.planName}
+                  </h2>
+                  <p className="text-[15px] text-hg-muted mt-2 leading-relaxed">{room.description}</p>
+                </div>
+
+                {/* Price */}
+                <div className="my-6 flex items-baseline gap-2">
+                  <span className="text-[48px] font-extralight text-hg-gold font-heading leading-none">
+                    €{room.price}
+                  </span>
+                  <span className="text-sm text-hg-muted">/ night</span>
+                </div>
+
+                {/* Divider */}
+                <div
+                  className="w-full h-px mb-5"
+                  style={{
+                    background:
+                      "linear-gradient(90deg, transparent, rgba(255,255,255,0.09) 20%, rgba(255,255,255,0.22) 50%, rgba(255,255,255,0.09) 80%, transparent)",
+                  }}
+                />
+
+                {/* Features */}
+                <ul className="flex flex-col gap-2.5 text-sm text-hg-cream/85 mb-8 flex-1">
+                  {room.features.map((feature) => (
+                    <li key={feature} className="flex items-center gap-2.5">
+                      <CheckIcon className="text-hg-gold w-4 h-4 shrink-0" />
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+
+                {/* CTA */}
+                <Link
+                  href={`/booking?roomType=${room.planName}`}
+                  className={[
+                    "mt-auto w-full py-2.5 rounded-xl font-semibold text-sm text-center transition-colors duration-200",
+                    room.buttonVariant === "primary"
+                      ? "bg-hg-gold hover:bg-hg-gold-light text-hg-black"
+                      : "bg-white/10 hover:bg-white/20 text-hg-cream border border-white/20",
+                  ].join(" ")}
+                >
+                  {room.buttonText}
+                </Link>
+              </GlowCard>
             </motion.div>
           ))}
         </div>

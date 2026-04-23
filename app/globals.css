@@ -2,15 +2,17 @@
 
 @theme inline {
   /* ─── Hotel Garden Color System ─────────────────── */
-  --color-hg-black: #0F0D0B;
-  --color-hg-surface: #1C1814;
-  --color-hg-card: #242018;
+  --color-hg-black: #450920;
+  --color-hg-deep: #1E0510;
+  --color-hg-rose: #7B2048;
+  --color-hg-surface: #5C1430;
+  --color-hg-card: #6B1A3A;
   --color-hg-gold: #C9A84C;
   --color-hg-gold-light: #E8C97A;
-  --color-hg-cream: #F5EDD8;
-  --color-hg-muted: #9A8870;
-  --color-hg-red: #9B2335;
-  --color-hg-border: #3A3020;
+  --color-hg-cream: #F9DBBD;
+  --color-hg-muted: #C49080;
+  --color-hg-red: #FF4D6D;
+  --color-hg-border: #7D2244;
 
   /* ─── Typography ─────────────────────────────────── */
   --font-heading: var(--font-playfair);
@@ -23,8 +25,8 @@
 }
 
 body {
-  background-color: #0F0D0B;
-  color: #F5EDD8;
+  background-color: #450920;
+  color: #F9DBBD;
   font-family: var(--font-karla), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -36,14 +38,14 @@ h1, h2, h3, h4, h5, h6 {
 
 /* ─── Date input styling ─────────────────────────── */
 input[type="date"]::-webkit-calendar-picker-indicator {
-  filter: invert(0.6) sepia(0.3) saturate(2) hue-rotate(10deg);
+  filter: invert(0.6) sepia(0.3) saturate(2) hue-rotate(330deg);
   cursor: pointer;
 }
 
 /* ─── Select styling ─────────────────────────────── */
 select option {
-  background-color: #1C1814;
-  color: #F5EDD8;
+  background-color: #5C1430;
+  color: #F9DBBD;
 }
 
 /* ─── Leaflet map dark tint ──────────────────────── */
@@ -52,8 +54,8 @@ select option {
 }
 
 .leaflet-container {
-  background-color: #0F0D0B;
-  border: 1px solid #3A3020;
+  background-color: #450920;
+  border: 1px solid #7D2244;
 }
 
 /* ─── Scrollbar ──────────────────────────────────── */
@@ -61,10 +63,10 @@ select option {
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #0F0D0B;
+  background: #450920;
 }
 ::-webkit-scrollbar-thumb {
-  background: #3A3020;
+  background: #7D2244;
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
@@ -78,3 +80,4 @@ select option {
   background-color: #C9A84C;
   margin: 0 auto;
 }
+

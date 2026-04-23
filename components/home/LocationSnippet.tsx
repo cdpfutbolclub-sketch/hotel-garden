@@ -15,7 +15,12 @@ const facts = [
 
 export default function LocationSnippet() {
   return (
-    <section className="py-24 px-4 bg-hg-surface border-t border-hg-border">
+    <section
+      className="py-24 px-4"
+      style={{
+        background: "linear-gradient(180deg, #450920 0%, #7B2048 12%, #7B2048 88%, #450920 100%)",
+      }}
+    >
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Text side */}

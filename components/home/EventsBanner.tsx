@@ -11,7 +11,12 @@ const weeks = [
 
 export default function EventsBanner() {
   return (
-    <section className="py-20 px-4 bg-hg-surface border-y border-hg-border">
+    <section
+      className="py-20 px-4"
+      style={{
+        background: "linear-gradient(180deg, #450920 0%, #1E0510 12%, #1E0510 88%, #450920 100%)",
+      }}
+    >
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 16 }}

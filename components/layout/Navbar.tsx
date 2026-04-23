@@ -8,12 +8,12 @@ import { Menu } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const navItems = [
-  { name: "Rooms",      href: "/rooms" },
-  { name: "Restaurant", href: "/restaurant" },
-  { name: "Sports",     href: "/sports" },
-  { name: "Gallery",    href: "/gallery" },
-  { name: "About",      href: "/about" },
-  { name: "Contact",    href: "/contact" },
+  { name: "Rooms",       href: "/rooms" },
+  { name: "Restaurant",  href: "/restaurant" },
+  { name: "Draft Week",  href: "/draft-week" },
+  { name: "Gallery",     href: "/gallery" },
+  { name: "About",       href: "/about" },
+  { name: "Contact",     href: "/contact" },
 ];
 
 const EXPAND_SCROLL_THRESHOLD = 80;

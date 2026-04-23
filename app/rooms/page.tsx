@@ -2,11 +2,19 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Check, Phone } from "lucide-react";
 import SectionHeader from "@/components/shared/SectionHeader";
+import { GlowCard } from "@/components/shared/GlowCard";
 
 export const metadata: Metadata = {
   title: "Rooms & Suites",
   description:
     "Choose from Standard, Superior, and Family rooms at Hotel Garden. All rooms include breakfast, free WiFi, and mountain views from €50/night.",
+};
+
+// Glow hue per room category (0–360)
+const ROOM_HUE: Record<string, number> = {
+  standard: 210,  // sapphire blue — clean, comfortable
+  superior:  42,  // gold         — premium, most popular
+  family:   155,  // emerald      — warm, welcoming
 };
 
 const rooms = [
@@ -96,18 +104,15 @@ export default function RoomsPage() {
       >
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row gap-8 justify-center items-stretch">
           {rooms.map((room) => (
-            <div
+            <GlowCard
               key={room.id}
-              className={[
-                // glass base
-                "relative flex-1 max-w-sm flex flex-col rounded-2xl px-7 py-8",
-                "backdrop-blur-[14px] bg-gradient-to-br shadow-xl",
-                "transition-all duration-300",
-                // popular vs normal
-                room.popular
-                  ? "from-white/[0.12] to-white/[0.04] border border-hg-gold/30 ring-1 ring-hg-gold/20 scale-105 shadow-2xl shadow-hg-gold/10"
-                  : "from-white/[0.06] to-white/[0.01] border border-white/10",
+              featured={room.popular}
+              glowHue={ROOM_HUE[room.id]}
+              wrapperClassName={[
+                "flex-1 max-w-sm transition-all duration-300",
+                room.popular ? "scale-105" : "",
               ].join(" ")}
+              className="relative flex flex-col px-7 py-8"
             >
               {/* Most Popular badge */}
               {room.badge && (
@@ -176,7 +181,7 @@ export default function RoomsPage() {
               >
                 Book Now
               </Link>
-            </div>
+            </GlowCard>
           ))}
         </div>
 
