@@ -9,6 +9,15 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [
+      {
+        source: "/sports",
+        destination: "/draft-week",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

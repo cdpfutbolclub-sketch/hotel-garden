@@ -5,8 +5,9 @@ import { motion } from "framer-motion";
 import { ArrowRight, Calendar } from "lucide-react";
 
 const weeks = [
-  { label: "Week 1", dates: "June 29 – July 5, 2026" },
-  { label: "Week 2", dates: "July 6 – July 11, 2026" },
+  { label: "Session 1", dates: "June 1 – 6, 2026" },
+  { label: "Session 2", dates: "June 22 – 27, 2026" },
+  { label: "Session 3", dates: "July 6 – 11, 2026" },
 ];
 
 export default function EventsBanner() {
@@ -86,7 +87,7 @@ export default function EventsBanner() {
               <p className="text-hg-muted text-[10px] tracking-[0.3em] uppercase mb-4">Package Includes</p>
               <ul className="space-y-3">
                 {[
-                  "7-night stay at Hotel Garden",
+                  "6-day stay at Hotel Garden",
                   "Full board (breakfast, lunch, snack, dinner)",
                   "Training sessions with CDP FC first team",
                   "Friendly match participation",
