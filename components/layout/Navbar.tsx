@@ -101,22 +101,14 @@ export default function Navbar() {
 
       {/* ── MOBILE NAV ── */}
       {isMobile ? (
-        <div
-          className="flex items-center gap-3 rounded-full border border-hg-border bg-hg-black/85 shadow-xl backdrop-blur-md px-3 py-2 cursor-pointer"
+        <motion.div
+          initial={{ y: -80, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ type: "spring" as const, damping: 20, stiffness: 300 }}
+          className="w-12 h-12 rounded-full border border-hg-border bg-hg-black/85 shadow-xl backdrop-blur-md flex items-center justify-center cursor-pointer"
+          whileTap={{ scale: 0.92 }}
           onClick={() => setMobileOpen((p) => !p)}
         >
-          {/* Logo */}
-          <div className="bg-white/90 rounded px-1.5 py-0.5">
-            <Image
-              src="/logo.jpg"
-              alt="Hotel Garden"
-              width={24}
-              height={30}
-              className="object-contain"
-              priority
-            />
-          </div>
-          {/* Hamburger / Close */}
           <motion.div
             animate={{ rotate: mobileOpen ? 90 : 0 }}
             transition={{ duration: 0.2 }}
@@ -126,7 +118,7 @@ export default function Navbar() {
               : <Menu className="h-5 w-5 text-hg-gold" />
             }
           </motion.div>
-        </div>
+        </motion.div>
       ) : (
 
       /* ── DESKTOP NAV ── */

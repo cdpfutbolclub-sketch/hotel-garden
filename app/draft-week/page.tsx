@@ -166,7 +166,7 @@ export default function DraftWeekPage() {
     + " text-[#8A7A78]";
 
   return (
-    <div className="min-h-screen" style={{ background: C.black }}>
+    <div className="min-h-screen overflow-x-hidden" style={{ background: C.black }}>
 
       {/* ── 1. HERO ─────────────────────────────────────────────────────────────── */}
       <section
@@ -459,7 +459,7 @@ export default function DraftWeekPage() {
           </motion.div>
 
           {/* Match photos grid */}
-          <div className="grid grid-cols-4 gap-3 mb-6" style={{ gridTemplateRows: "180px 180px" }}>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6" style={{ gridTemplateRows: "180px 180px" }}>
             {/* Large featured photo — 2×2 */}
             <motion.div
               initial={{ opacity: 0, scale: 0.97 }}
