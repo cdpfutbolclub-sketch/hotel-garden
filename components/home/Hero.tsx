@@ -91,19 +91,19 @@ export default function Hero() {
           </div>
 
           {/* CTAs */}
-          <div className="flex flex-row gap-3">
-            <a
-              href="tel:+376615817"
-              className="inline-flex items-center gap-3 border border-hg-cream/30 hover:border-hg-gold text-hg-cream hover:text-hg-gold text-sm px-6 py-3 rounded-full transition-colors"
-            >
-              Jump on a call <PhoneCall className="w-4 h-4" />
-            </a>
+          <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto items-stretch sm:items-center">
             <Link
               href="/booking"
-              className="inline-flex items-center gap-3 bg-hg-gold hover:bg-hg-gold-light text-hg-black font-bold text-sm px-6 py-3 rounded-full transition-colors"
+              className="inline-flex items-center justify-center gap-3 bg-hg-gold hover:bg-hg-gold-light text-hg-black font-bold text-sm px-6 py-3 rounded-full transition-colors"
             >
               Book your stay <MoveRight className="w-4 h-4" />
             </Link>
+            <a
+              href="tel:+376615817"
+              className="inline-flex items-center justify-center gap-3 border border-hg-cream/30 hover:border-hg-gold text-hg-cream hover:text-hg-gold text-sm px-6 py-3 rounded-full transition-colors"
+            >
+              Jump on a call <PhoneCall className="w-4 h-4" />
+            </a>
           </div>
 
         </div>

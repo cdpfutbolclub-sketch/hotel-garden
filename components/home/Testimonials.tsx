@@ -63,13 +63,19 @@ function TestimonialCard({
   testimonial,
   position,
   handleShuffle,
+  isMobile,
 }: {
   testimonial: Testimonial;
   position: Position;
   handleShuffle: () => void;
+  isMobile: boolean;
 }) {
   const dragStartX = React.useRef(0);
   const isFront = position === "front";
+
+  const xOffset = isMobile
+    ? { middle: "10%", back: "20%" }
+    : { middle: "22%", back: "44%" };
 
   return (
     <motion.div
@@ -78,7 +84,7 @@ function TestimonialCard({
       }}
       animate={{
         rotate: position === "front" ? "-4deg" : position === "middle" ? "0deg" : "4deg",
-        x: position === "front" ? "0%" : position === "middle" ? "22%" : "44%",
+        x: position === "front" ? "0%" : position === "middle" ? xOffset.middle : xOffset.back,
         scale: position === "front" ? 1 : position === "middle" ? 0.97 : 0.94,
       }}
       drag={isFront}
@@ -88,13 +94,13 @@ function TestimonialCard({
         dragStartX.current = e.clientX;
       }}
       onDragEnd={(e: MouseEvent) => {
-        if (dragStartX.current - e.clientX > 150) {
+        if (dragStartX.current - e.clientX > (isMobile ? 60 : 150)) {
           handleShuffle();
         }
         dragStartX.current = 0;
       }}
       transition={{ duration: 0.4, ease: "easeOut" }}
-      className={`absolute left-0 top-0 flex flex-col gap-5 h-[340px] w-[320px] sm:w-[360px] select-none rounded-2xl p-7 backdrop-blur-[14px] bg-gradient-to-br from-white/[0.09] to-white/[0.02] border shadow-2xl ${
+      className={`absolute left-0 top-0 flex flex-col gap-4 h-[280px] w-[240px] sm:h-[340px] sm:w-[360px] select-none rounded-2xl p-5 sm:p-7 backdrop-blur-[14px] bg-gradient-to-br from-white/[0.09] to-white/[0.02] border shadow-2xl ${
         isFront
           ? "border-hg-gold/40 cursor-grab active:cursor-grabbing shadow-hg-gold/5"
           : "border-white/10"
@@ -131,6 +137,14 @@ function TestimonialCard({
 
 export default function Testimonials() {
   const [cards, setCards] = React.useState(TESTIMONIALS);
+  const [isMobile, setIsMobile] = React.useState(false);
+
+  React.useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 640);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
 
   const handleShuffle = React.useCallback(() => {
     setCards((prev) => {
@@ -150,13 +164,14 @@ export default function Testimonials() {
 
         <div className="flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-12">
           {/* Card stack — container is wide enough to hold cards + their x-offset overflow */}
-          <div className="relative h-[340px] w-[320px] sm:w-[540px] shrink-0">
+          <div className="relative h-[280px] w-[240px] sm:h-[340px] sm:w-[540px] shrink-0">
             {cards.map((t, i) => (
               <TestimonialCard
                 key={t.id}
                 testimonial={t}
                 position={getPosition(i, cards.length)}
                 handleShuffle={handleShuffle}
+                isMobile={isMobile}
               />
             ))}
           </div>

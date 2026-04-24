@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <>
+    <div className="overflow-x-hidden">
       <Hero />
       <BookingBar />
       <RoomsPreview />
@@ -25,6 +25,6 @@ export default function Home() {
       <EventsBanner />
       <Testimonials />
       <LocationSnippet />
-    </>
+    </div>
   );
 }
