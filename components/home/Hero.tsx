@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import { MoveRight, PhoneCall } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Hero() {
   const [titleNumber, setTitleNumber] = useState(0);
@@ -24,20 +25,31 @@ export default function Hero() {
   }, [titleNumber, titles]);
 
   return (
-    <div
-      className="w-full min-h-screen flex items-center"
-      style={{
-        background:
-          "radial-gradient(ellipse at 25% 40%, #2E2410 0%, #1C1814 40%, #0F0D0B 75%)",
-      }}
-    >
-      <div className="container mx-auto">
+    <div className="relative w-full min-h-screen flex items-center overflow-hidden">
+      {/* Background photo */}
+      <Image
+        src="/hotel-hero.png"
+        alt="Hotel Garden exterior at dusk, Santa Coloma, Andorra"
+        fill
+        priority
+        className="object-cover object-[center_60%]"
+      />
+      {/* Dark overlay so text stays readable */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            "linear-gradient(180deg, rgba(10,8,6,0.55) 0%, rgba(10,8,6,0.45) 50%, rgba(10,8,6,0.72) 100%)",
+        }}
+        aria-hidden
+      />
+      <div className="relative z-10 container mx-auto">
         <div className="flex gap-8 py-20 lg:py-40 items-center justify-center flex-col">
 
           {/* Badge */}
           <div>
             <Link
-              href="/sports"
+              href="/draft-week"
               className="inline-flex items-center gap-3 border border-hg-gold/30 bg-hg-gold/5 text-hg-gold text-xs tracking-[0.3em] uppercase px-5 py-2.5 rounded-full hover:bg-hg-gold/10 transition-colors"
             >
               CDP Fútbol Club × Hotel Garden <MoveRight className="w-4 h-4" />
