@@ -104,7 +104,7 @@ export default function RoomsPreview() {
                   <h2 className="text-[28px] sm:text-[42px] font-extralight tracking-[-0.03em] text-hg-cream font-heading leading-none">
                     {room.planName}
                   </h2>
-                  <p className="text-[15px] text-hg-muted mt-2 leading-relaxed">{room.description}</p>
+                  <p className="text-xs sm:text-[15px] text-hg-muted mt-2 leading-relaxed">{room.description}</p>
                 </div>
 
                 {/* Price */}
@@ -112,7 +112,7 @@ export default function RoomsPreview() {
                   <span className="text-[32px] sm:text-[48px] font-extralight text-hg-gold font-heading leading-none">
                     €{room.price}
                   </span>
-                  <span className="text-sm text-hg-muted">/ night</span>
+                  <span className="text-xs sm:text-sm text-hg-muted">/ night</span>
                 </div>
 
                 {/* Divider */}
@@ -125,7 +125,7 @@ export default function RoomsPreview() {
                 />
 
                 {/* Features */}
-                <ul className="flex flex-col gap-2.5 text-sm text-hg-cream/85 mb-8 flex-1">
+                <ul className="flex flex-col gap-2 sm:gap-2.5 text-xs sm:text-sm text-hg-cream/85 mb-8 flex-1">
                   {room.features.map((feature) => (
                     <li key={feature} className="flex items-center gap-2.5">
                       <CheckIcon className="text-hg-gold w-4 h-4 shrink-0" />

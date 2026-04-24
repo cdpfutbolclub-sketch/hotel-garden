@@ -84,9 +84,8 @@ export default function Hero() {
             </h1>
 
             <p className="text-lg md:text-xl leading-relaxed tracking-tight text-hg-muted max-w-2xl text-center">
-              Nestled in the heart of Andorra la Vella, Hotel Garden blends
-              mountain tranquility with modern comfort. From our rooms to our
-              restaurant, every detail is crafted for an unforgettable stay.
+              Mountain comfort in the heart of Andorra.
+              Breakfast included, free parking, and views to match.
             </p>
           </div>
 
