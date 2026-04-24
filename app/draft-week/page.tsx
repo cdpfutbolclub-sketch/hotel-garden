@@ -241,9 +241,9 @@ export default function DraftWeekPage() {
             className="font-heading text-5xl sm:text-7xl lg:text-[90px] font-extralight leading-[0.9] mb-6 tracking-tight"
             style={{ color: C.white }}
           >
-            Train in Andorra.
+            This Is Your
             <br />
-            <em className="not-italic font-light" style={{ color: C.red }}>Be Seen.</em>
+            <em className="not-italic font-light" style={{ color: C.red }}>Chance.</em>
           </motion.h1>
 
           {/* Red divider under headline */}
@@ -262,8 +262,9 @@ export default function DraftWeekPage() {
             className="text-base sm:text-lg leading-relaxed max-w-2xl mx-auto mb-10"
             style={{ color: C.muted }}
           >
-            No agents. No middlemen. Just 6 days to show what you can do —
-            in front of a professional club with a real European pathway.
+            Become a professional footballer at CDP Fútbol Club —
+            one of Andorra&apos;s top clubs with a direct European pathway.
+            6 days. No agents. No middlemen. Just you and the ball.
           </motion.p>
 
           {/* CTAs */}
