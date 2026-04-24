@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
   Check, CheckCircle, Calendar, ChevronDown,
   Phone, ArrowRight, Users, Shield, Mountain, MessageCircle, Star,
+  Utensils, Dumbbell, PlayCircle, Zap, Activity, Coffee,
 } from "lucide-react";
 
 // ── Color tokens (used throughout as inline styles) ───────────────────────────
@@ -870,52 +871,202 @@ export default function DraftWeekPage() {
             </h2>
           </motion.div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
-            {schedule.map((day, i) => (
-              <motion.div
-                key={day.day}
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.07 }}
-                className="rounded-2xl p-4 text-center backdrop-blur-[14px] transition-all duration-300"
-                style={{
-                  background: C.cardBg,
-                  border: `1px solid ${C.redBorder}`,
-                }}
+          {/* Visual Schedule Table */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="overflow-x-auto rounded-2xl"
+            style={{ border: `1px solid ${C.redBorder}` }}
+          >
+            <div style={{ minWidth: 560 }}>
+              {/* Header Row */}
+              <div
+                className="grid text-[10px] font-bold tracking-[0.18em] uppercase"
+                style={{ gridTemplateColumns: "64px repeat(5,1fr) 1fr", background: C.red }}
               >
-                {/* Red top accent */}
+                <div className="px-3 py-3 flex items-center justify-center opacity-70">TIME</div>
+                {["MON","TUE","WED","THU","FRI"].map(d => (
+                  <div key={d} className="px-2 py-3 flex items-center justify-center" style={{ color: C.white }}>
+                    {d}
+                  </div>
+                ))}
                 <div
-                  className="w-6 h-0.5 mx-auto mb-3"
-                  style={{ background: day.label === "Match Day" ? C.red : "rgba(204,17,0,0.3)" }}
-                />
-                <p
-                  className="text-[11px] font-semibold tracking-wider uppercase mb-0.5"
-                  style={{ color: C.red }}
+                  className="px-2 py-3 flex items-center justify-center font-extrabold"
+                  style={{ color: C.white, background: "rgba(0,0,0,0.25)" }}
                 >
-                  {day.day}
-                </p>
-                <p className="text-[9px] tracking-wider uppercase mb-3 opacity-40" style={{ color: C.muted }}>
-                  {day.label}
-                </p>
-                <div className="space-y-1.5">
-                  {day.sessions.map((s) => (
-                    <p
-                      key={s}
-                      className="text-xs rounded-lg px-2 py-1.5 leading-tight"
-                      style={{
-                        color: C.muted,
-                        background: "rgba(255,255,255,0.04)",
-                        border: "1px solid rgba(255,255,255,0.06)",
-                      }}
-                    >
-                      {s}
-                    </p>
-                  ))}
+                  SAT
                 </div>
-              </motion.div>
-            ))}
-          </div>
+              </div>
+
+              {/* Row: 08:30 Breakfast */}
+              <div
+                className="grid border-b"
+                style={{ gridTemplateColumns: "64px repeat(5,1fr) 1fr", borderColor: C.redBorder }}
+              >
+                <div className="px-3 py-3.5 flex flex-col items-center justify-center gap-0.5 border-r" style={{ borderColor: C.redBorder }}>
+                  <Coffee size={12} style={{ color: C.red }} />
+                  <span className="text-[10px] font-mono font-semibold" style={{ color: C.muted }}>08:30</span>
+                </div>
+                {/* spans all 5 weekdays + SAT */}
+                <div
+                  className="flex items-center justify-center gap-2 py-3.5"
+                  style={{ gridColumn: "span 6", background: "rgba(255,255,255,0.025)" }}
+                >
+                  <Utensils size={13} style={{ color: C.red }} />
+                  <span className="text-xs font-medium" style={{ color: C.white }}>Breakfast</span>
+                </div>
+              </div>
+
+              {/* Row: 09:30 Gym */}
+              <div
+                className="grid border-b"
+                style={{ gridTemplateColumns: "64px repeat(5,1fr) 1fr", borderColor: C.redBorder }}
+              >
+                <div className="px-3 py-3.5 flex flex-col items-center justify-center gap-0.5 border-r" style={{ borderColor: C.redBorder }}>
+                  <Dumbbell size={12} style={{ color: C.red }} />
+                  <span className="text-[10px] font-mono font-semibold" style={{ color: C.muted }}>09:30</span>
+                </div>
+                <div
+                  className="flex items-center justify-center gap-2 py-3.5"
+                  style={{ gridColumn: "span 5", background: "rgba(255,255,255,0.02)" }}
+                >
+                  <Activity size={13} style={{ color: C.red }} />
+                  <span className="text-xs font-medium" style={{ color: C.white }}>Gym Session</span>
+                </div>
+                <div
+                  className="flex items-center justify-center py-3.5 border-l"
+                  style={{ borderColor: C.redBorder, background: "rgba(0,0,0,0.15)" }}
+                >
+                  <span className="text-[10px]" style={{ color: C.muted }}>Rest</span>
+                </div>
+              </div>
+
+              {/* Row: 10:30 Video Analysis */}
+              <div
+                className="grid border-b"
+                style={{ gridTemplateColumns: "64px repeat(5,1fr) 1fr", borderColor: C.redBorder }}
+              >
+                <div className="px-3 py-3.5 flex flex-col items-center justify-center gap-0.5 border-r" style={{ borderColor: C.redBorder }}>
+                  <PlayCircle size={12} style={{ color: C.red }} />
+                  <span className="text-[10px] font-mono font-semibold" style={{ color: C.muted }}>10:30</span>
+                </div>
+                <div
+                  className="flex items-center justify-center gap-2 py-3.5"
+                  style={{ gridColumn: "span 5", background: "rgba(255,255,255,0.02)" }}
+                >
+                  <PlayCircle size={13} style={{ color: C.red }} />
+                  <span className="text-xs font-medium" style={{ color: C.white }}>Video Analysis</span>
+                </div>
+                <div
+                  className="flex items-center justify-center py-3.5 border-l"
+                  style={{ borderColor: C.redBorder, background: "rgba(0,0,0,0.15)" }}
+                >
+                  <span className="text-[10px]" style={{ color: C.muted }}>Rest</span>
+                </div>
+              </div>
+
+              {/* Row: 11:30 TRAINING SESSION — highlighted red */}
+              <div
+                className="grid border-b"
+                style={{ gridTemplateColumns: "64px repeat(5,1fr) 1fr", borderColor: C.redBorder }}
+              >
+                <div
+                  className="px-3 py-4 flex flex-col items-center justify-center gap-0.5 border-r"
+                  style={{ borderColor: "rgba(255,255,255,0.15)", background: C.redDark }}
+                >
+                  <Zap size={12} style={{ color: "#FF6B5B" }} />
+                  <span className="text-[10px] font-mono font-bold" style={{ color: C.white }}>11:30</span>
+                </div>
+                <div
+                  className="flex items-center justify-center gap-2 py-4"
+                  style={{ gridColumn: "span 5", background: C.red }}
+                >
+                  <Zap size={14} style={{ color: C.white }} />
+                  <span className="text-xs font-extrabold tracking-wider uppercase" style={{ color: C.white }}>
+                    Training Session
+                  </span>
+                </div>
+                <div
+                  className="flex items-center justify-center py-4 border-l"
+                  style={{ borderColor: "rgba(255,255,255,0.15)", background: "#6B0000" }}
+                >
+                  <span className="text-[10px] font-bold tracking-wide uppercase text-center leading-tight px-1" style={{ color: C.white }}>
+                    Friendly Match
+                  </span>
+                </div>
+              </div>
+
+              {/* Row: 13:00 Stretching */}
+              <div
+                className="grid border-b"
+                style={{ gridTemplateColumns: "64px repeat(5,1fr) 1fr", borderColor: C.redBorder }}
+              >
+                <div className="px-3 py-3.5 flex flex-col items-center justify-center gap-0.5 border-r" style={{ borderColor: C.redBorder }}>
+                  <Activity size={12} style={{ color: C.red }} />
+                  <span className="text-[10px] font-mono font-semibold" style={{ color: C.muted }}>13:00</span>
+                </div>
+                <div
+                  className="flex items-center justify-center gap-2 py-3.5"
+                  style={{ gridColumn: "span 5", background: "rgba(255,255,255,0.02)" }}
+                >
+                  <Activity size={13} style={{ color: C.red }} />
+                  <span className="text-xs font-medium" style={{ color: C.white }}>Stretching &amp; Recovery</span>
+                </div>
+                <div
+                  className="flex items-center justify-center py-3.5 border-l"
+                  style={{ borderColor: C.redBorder, background: "rgba(0,0,0,0.15)" }}
+                >
+                  <span className="text-[10px]" style={{ color: C.muted }}>—</span>
+                </div>
+              </div>
+
+              {/* Row: 14:00 Lunch */}
+              <div
+                className="grid"
+                style={{ gridTemplateColumns: "64px repeat(5,1fr) 1fr" }}
+              >
+                <div className="px-3 py-3.5 flex flex-col items-center justify-center gap-0.5 border-r" style={{ borderColor: C.redBorder }}>
+                  <Utensils size={12} style={{ color: C.red }} />
+                  <span className="text-[10px] font-mono font-semibold" style={{ color: C.muted }}>14:00</span>
+                </div>
+                <div
+                  className="flex items-center justify-center gap-2 py-3.5"
+                  style={{ gridColumn: "span 5", background: "rgba(255,255,255,0.025)" }}
+                >
+                  <Utensils size={13} style={{ color: C.red }} />
+                  <span className="text-xs font-medium" style={{ color: C.white }}>Lunch · Free Afternoon</span>
+                </div>
+                <div
+                  className="flex items-center justify-center py-3.5 border-l"
+                  style={{ borderColor: C.redBorder, background: "rgba(0,0,0,0.15)" }}
+                >
+                  <span className="text-[10px] font-semibold" style={{ color: C.muted }}>Departure</span>
+                </div>
+              </div>
+
+              {/* Bottom info bar */}
+              <div
+                className="flex flex-col sm:flex-row items-center justify-between gap-3 px-5 py-4"
+                style={{ background: C.red }}
+              >
+                <div className="flex items-center gap-2">
+                  <Calendar size={14} style={{ color: C.white }} />
+                  <span className="text-xs font-semibold tracking-wide" style={{ color: C.white }}>
+                    Day 1: Arrive Sunday evening · Day 7: Depart Saturday after the match
+                  </span>
+                </div>
+                <button
+                  onClick={() => scrollToForm()}
+                  className="shrink-0 text-[11px] font-bold tracking-widest uppercase px-5 py-2 rounded-full transition-colors"
+                  style={{ background: C.white, color: C.red }}
+                >
+                  Limited Spots — Apply Now
+                </button>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </section>
 
