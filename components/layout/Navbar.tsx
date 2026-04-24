@@ -98,7 +98,7 @@ export default function Navbar() {
         whileTap={!isExpanded ? { scale: 0.95 } : {}}
         onClick={handleNavClick}
         className={cn(
-          "flex items-center overflow-hidden rounded-full border border-hg-border bg-hg-black/85 shadow-xl backdrop-blur-md h-12",
+          "flex items-center overflow-hidden rounded-full border border-hg-border bg-hg-black/85 shadow-xl backdrop-blur-md py-2",
           !isExpanded && "cursor-pointer justify-center"
         )}
       >
@@ -124,7 +124,7 @@ export default function Navbar() {
         {/* Nav links */}
         <motion.div
           className={cn(
-            "flex items-center gap-1 sm:gap-2 pr-2",
+            "flex items-center gap-1 sm:gap-2 pr-3",
             !isExpanded && "pointer-events-none"
           )}
         >
