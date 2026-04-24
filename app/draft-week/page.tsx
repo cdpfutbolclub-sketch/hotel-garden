@@ -4,7 +4,7 @@ import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Check, CheckCircle, Calendar, ChevronDown,
-  Phone, ArrowRight, Users, Shield,
+  Phone, ArrowRight, Users, Shield, Mountain, MessageCircle, Star,
 } from "lucide-react";
 
 // ── Color tokens (used throughout as inline styles) ───────────────────────────
@@ -26,6 +26,9 @@ const C = {
   cardBgHi:   "rgba(255,255,255,0.07)",
   glass:      "backdrop-blur-[14px]",
 };
+
+// WhatsApp
+const WA_HREF = `https://wa.me/376615817?text=${encodeURIComponent("Hi, I'm interested in the Draft Week 2026 program. Can you tell me more?")}`;
 
 // Section background helpers
 const BG = {
@@ -62,7 +65,7 @@ const included = [
   "Gym & fitness center access",
   "Local transportation",
   "Technical & tactical coaching sessions",
-  "Individual performance feedback",
+  "Written scouting report from coaching staff",
 ];
 
 // ── Schedule ──────────────────────────────────────────────────────────────────
@@ -77,11 +80,38 @@ const schedule = [
 
 // ── Trust stats ───────────────────────────────────────────────────────────────
 const trustStats = [
-  { value: "6 Nights",   label: "All-inclusive stay" },
-  { value: "9+",         label: "Training sessions" },
-  { value: "First Team", label: "Train alongside pros" },
-  { value: "12 Players", label: "Max per session" },
-  { value: "€500",       label: "Complete package" },
+  { value: "Direct",      label: "No agents needed" },
+  { value: "UEFA",        label: "European pathway" },
+  { value: "12 Players",  label: "Max per session" },
+  { value: "€500",        label: "All-inclusive" },
+  { value: "6 Days",      label: "To change everything" },
+];
+
+// ── Why Andorra ───────────────────────────────────────────────────────────────
+const whyAndorra = [
+  {
+    Icon: Shield,
+    title: "UEFA Member Nation",
+    body: "Andorra competes in UEFA European qualifiers. A contract here is professional European football — not a dead-end league with no pathway forward.",
+  },
+  {
+    Icon: Users,
+    title: "No Agents. Direct Access.",
+    body: "Agencies charge €3,000–€10,000 to place players at trials. This program gives you direct contact with the coaching staff. €500, everything included.",
+  },
+  {
+    Icon: Mountain,
+    title: "Focus Without Distraction",
+    body: "Training in the Pyrenees means no city noise, no distractions. Just you, the ball, and 6 days to prove yourself to a real professional club.",
+  },
+];
+
+// ── The Pathway ───────────────────────────────────────────────────────────────
+const pathway = [
+  { step: "01", title: "Apply",    body: "Submit your details. Our team confirms your spot within 48 hours. Sessions fill fast — first come, first served." },
+  { step: "02", title: "Train",    body: "6 days. 9+ sessions. Train alongside CDP's first team under licensed coaches who are watching every minute." },
+  { step: "03", title: "Evaluate", body: "Every player receives a written technical scouting report from our coaching staff — honest, detailed, signed." },
+  { step: "04", title: "The Talk", body: "Players who meet the level enter a direct conversation with the club about contracts, loans, or ongoing trials." },
 ];
 
 // ── Club stats ────────────────────────────────────────────────────────────────
@@ -166,7 +196,7 @@ export default function DraftWeekPage() {
     + " text-[#8A7A78]";
 
   return (
-    <div className="min-h-screen overflow-x-hidden" style={{ background: C.black }}>
+    <div className="min-h-screen overflow-x-hidden pb-20 sm:pb-0" style={{ background: C.black }}>
 
       {/* ── 1. HERO ─────────────────────────────────────────────────────────────── */}
       <section
@@ -231,9 +261,8 @@ export default function DraftWeekPage() {
             className="text-base sm:text-lg leading-relaxed max-w-2xl mx-auto mb-10"
             style={{ color: C.muted }}
           >
-            A 6-day elite football trial with CDP Fútbol Club in the heart of the Pyrenees.
-            Train with professionals, play in a competitive match, and put yourself in front
-            of a club with a genuine UEFA pathway.
+            No agents. No middlemen. Just 6 days to show what you can do —
+            in front of a professional club with a real European pathway.
           </motion.p>
 
           {/* CTAs */}
@@ -262,6 +291,17 @@ export default function DraftWeekPage() {
               View Available Dates
             </a>
           </motion.div>
+
+          {/* Social proof line */}
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="text-[11px] tracking-[0.25em] uppercase mb-10"
+            style={{ color: C.mutedDark }}
+          >
+            ✦ Max 12 players per session · Applications open now
+          </motion.p>
 
           {/* Trust pills */}
           <motion.div
@@ -322,7 +362,47 @@ export default function DraftWeekPage() {
         </div>
       </section>
 
-      {/* ── 3. AVAILABLE DATES ──────────────────────────────────────────────────── */}
+      {/* ── 3. WHY ANDORRA ──────────────────────────────────────────────────────── */}
+      <section className="py-14 sm:py-20 px-4" style={{ background: BG.dark }}>
+        <div className="max-w-5xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-10"
+          >
+            <p className="text-[10px] tracking-[0.4em] uppercase mb-3" style={{ color: C.red }}>The Advantage</p>
+            <h2 className="font-heading text-3xl sm:text-4xl font-extralight" style={{ color: C.white }}>
+              Why Andorra. Why CDP.
+            </h2>
+          </motion.div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+            {whyAndorra.map(({ Icon, title, body }, i) => (
+              <motion.div
+                key={title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="rounded-2xl p-6 backdrop-blur-[14px]"
+                style={{ background: C.cardBg, border: `1px solid ${C.redBorder}` }}
+              >
+                <div
+                  className="w-10 h-10 rounded-full flex items-center justify-center mb-4"
+                  style={{ background: "rgba(204,17,0,0.1)", border: `1px solid ${C.redBorder}` }}
+                >
+                  <Icon size={18} style={{ color: C.red }} />
+                </div>
+                <h3 className="font-semibold text-sm mb-2" style={{ color: C.white }}>{title}</h3>
+                <p className="text-xs leading-relaxed" style={{ color: C.muted }}>{body}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── 4. AVAILABLE DATES ──────────────────────────────────────────────────── */}
       <section id="dates" className="py-14 sm:py-24 px-4" style={{ background: BG.accent }}>
         <div className="max-w-6xl mx-auto">
           <motion.div
@@ -439,7 +519,67 @@ export default function DraftWeekPage() {
         </div>
       </section>
 
-      {/* ── 4. THE CLUB — CREDIBILITY ────────────────────────────────────────────── */}
+      {/* ── 5. THE PATHWAY ──────────────────────────────────────────────────────── */}
+      <section className="py-14 sm:py-20 px-4" style={{ background: BG.accent }}>
+        <div className="max-w-4xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <p className="text-[10px] tracking-[0.4em] uppercase mb-3" style={{ color: C.red }}>After the Trial</p>
+            <h2 className="font-heading text-3xl sm:text-4xl font-extralight mb-4" style={{ color: C.white }}>
+              The Pathway to Professional Football
+            </h2>
+            <p className="text-sm max-w-lg mx-auto" style={{ color: C.muted }}>
+              This isn&apos;t a holiday camp. Every step has a purpose.
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+            {pathway.map(({ step, title, body }, i) => (
+              <motion.div
+                key={step}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="relative rounded-2xl p-6 backdrop-blur-[14px]"
+                style={{ background: C.cardBg, border: `1px solid ${C.redBorder}` }}
+              >
+                <p
+                  className="font-heading text-4xl font-extralight mb-3 leading-none"
+                  style={{ color: "rgba(204,17,0,0.2)" }}
+                >
+                  {step}
+                </p>
+                <h3 className="font-bold text-sm mb-2" style={{ color: C.white }}>{title}</h3>
+                <p className="text-xs leading-relaxed" style={{ color: C.muted }}>{body}</p>
+                {i < pathway.length - 1 && (
+                  <div
+                    className="hidden lg:block absolute -right-2 top-1/2 -translate-y-1/2 w-4 h-px"
+                    style={{ background: C.red }}
+                  />
+                )}
+              </motion.div>
+            ))}
+          </div>
+
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            className="text-center text-xs italic"
+            style={{ color: C.mutedDark }}
+          >
+            &ldquo;We don&apos;t promise contracts. We promise honest evaluation and a real conversation —
+            which is more than most agencies give you.&rdquo;
+          </motion.p>
+        </div>
+      </section>
+
+      {/* ── 6. THE CLUB — CREDIBILITY ────────────────────────────────────────────── */}
       <section className="py-14 sm:py-24 px-4" style={{ background: BG.dark }}>
         <div className="max-w-6xl mx-auto">
           <motion.div
@@ -599,7 +739,23 @@ export default function DraftWeekPage() {
                 </motion.div>
               ))}
             </div>
-            <p className="text-center text-xs mt-6 opacity-30" style={{ color: C.muted }}>
+            <div
+              className="mt-8 rounded-2xl p-5 text-center backdrop-blur-[14px]"
+              style={{ background: "rgba(204,17,0,0.05)", border: `1px solid ${C.redBorder}` }}
+            >
+              <div className="flex items-center justify-center gap-2 mb-2">
+                <Star size={13} style={{ color: C.red }} />
+                <p className="text-xs font-semibold tracking-wider uppercase" style={{ color: C.white }}>
+                  Written Scouting Report
+                </p>
+                <Star size={13} style={{ color: C.red }} />
+              </div>
+              <p className="text-xs leading-relaxed" style={{ color: C.muted }}>
+                Every player receives a detailed written technical report signed by the coaching staff.
+                Honest. Specific. Yours to keep — regardless of outcome.
+              </p>
+            </div>
+            <p className="text-center text-xs mt-4 opacity-30" style={{ color: C.muted }}>
               Full coach bios and photos coming before launch
             </p>
           </div>
@@ -638,7 +794,7 @@ export default function DraftWeekPage() {
               border: `1px solid ${C.redBorderHi}`,
             }}
           >
-            <ul className="space-y-3 mb-8">
+            <ul className="space-y-3 mb-6">
               {included.map((item) => (
                 <li key={item} className="flex items-start gap-3 text-sm" style={{ color: C.muted }}>
                   <Check size={14} className="shrink-0 mt-0.5" style={{ color: C.red }} />
@@ -646,6 +802,33 @@ export default function DraftWeekPage() {
                 </li>
               ))}
             </ul>
+
+            {/* Price comparison */}
+            <div
+              className="rounded-xl p-4 mb-6 text-xs"
+              style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}
+            >
+              <p className="text-[10px] tracking-[0.3em] uppercase mb-3" style={{ color: C.mutedDark }}>
+                vs. going through an agent
+              </p>
+              <div className="grid grid-cols-2 gap-2">
+                {[
+                  ["Agent placement fee", "€3,000–€10,000", "Draft Week"],
+                  ["Accommodation", "Extra", "Included"],
+                  ["Meals", "Extra", "Included"],
+                  ["Scouting report", "Rarely", "Every player"],
+                  ["Total cost", "€5,000+", "€500"],
+                ].map(([label, agent, us]) => (
+                  <div key={label} className="contents">
+                    <div style={{ color: C.mutedDark }} className="col-span-1">{label}</div>
+                    <div className="col-span-1 flex gap-3">
+                      <span className="line-through opacity-40" style={{ color: C.muted }}>{agent}</span>
+                      <span className="font-semibold" style={{ color: us === "€500" ? C.gold : C.red }}>{us}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
             <div
               className="pt-6 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between"
               style={{ borderTop: "1px solid rgba(255,255,255,0.07)" }}
@@ -935,12 +1118,25 @@ export default function DraftWeekPage() {
                 {loading ? "Submitting…" : "Reserve My Spot"}
               </button>
 
-              <p className="text-center text-xs" style={{ color: C.mutedDark }}>
-                We&apos;ll confirm within 48 hours ·{" "}
-                <a href="tel:+376615817" className="hover:underline" style={{ color: C.red }}>
-                  +376 615 817
+              <div className="flex items-center justify-center gap-3 flex-wrap">
+                <p className="text-center text-xs" style={{ color: C.mutedDark }}>
+                  We&apos;ll confirm within 48 hours ·{" "}
+                  <a href="tel:+376615817" className="hover:underline" style={{ color: C.red }}>
+                    +376 615 817
+                  </a>
+                </p>
+                <span style={{ color: C.mutedDark }} className="text-xs opacity-40">or</span>
+                <a
+                  href={WA_HREF}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-xs hover:underline"
+                  style={{ color: "#25D366" }}
+                >
+                  <MessageCircle size={13} />
+                  WhatsApp us
                 </a>
-              </p>
+              </div>
             </form>
           )}
         </div>
@@ -958,10 +1154,20 @@ export default function DraftWeekPage() {
           <h3 className="font-heading text-2xl font-light mb-6" style={{ color: C.white }}>
             Talk to Us Directly
           </h3>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+            <a
+              href={WA_HREF}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 px-7 py-3.5 text-xs tracking-wider uppercase transition-all duration-200 rounded-full font-semibold"
+              style={{ background: "#25D366", color: "#fff" }}
+            >
+              <MessageCircle size={13} />
+              WhatsApp
+            </a>
             <a
               href="tel:+376615817"
-              className="inline-flex items-center gap-2 px-8 py-3.5 text-xs tracking-wider uppercase transition-all duration-200 rounded-full"
+              className="inline-flex items-center justify-center gap-2 px-7 py-3.5 text-xs tracking-wider uppercase transition-all duration-200 rounded-full"
               style={{ border: `1px solid ${C.red}`, color: C.red }}
             >
               <Phone size={13} />
@@ -969,7 +1175,7 @@ export default function DraftWeekPage() {
             </a>
             <button
               onClick={() => scrollToForm()}
-              className="inline-flex items-center gap-2 font-bold text-xs px-8 py-3.5 tracking-[0.2em] uppercase transition-all duration-200 rounded-full group"
+              className="inline-flex items-center justify-center gap-2 font-bold text-xs px-7 py-3.5 tracking-[0.2em] uppercase transition-all duration-200 rounded-full group"
               style={{ background: C.red, color: "#fff" }}
               onMouseEnter={e => (e.currentTarget.style.background = C.redLight)}
               onMouseLeave={e => (e.currentTarget.style.background = C.red)}
@@ -980,6 +1186,32 @@ export default function DraftWeekPage() {
           </div>
         </div>
       </section>
+
+      {/* ── STICKY MOBILE CTA BAR ────────────────────────────────────────────────── */}
+      <div className="fixed bottom-0 left-0 right-0 z-50 sm:hidden"
+        style={{ background: "rgba(8,8,8,0.95)", borderTop: `1px solid ${C.redBorder}`, backdropFilter: "blur(16px)" }}
+      >
+        <div className="flex gap-2 px-4 py-3">
+          <a
+            href={WA_HREF}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex-1 flex items-center justify-center gap-2 py-3 rounded-full text-xs font-semibold tracking-wider uppercase"
+            style={{ background: "#25D366", color: "#fff" }}
+          >
+            <MessageCircle size={14} />
+            WhatsApp
+          </a>
+          <button
+            onClick={() => scrollToForm()}
+            className="flex-1 flex items-center justify-center gap-2 py-3 rounded-full text-xs font-bold tracking-[0.2em] uppercase"
+            style={{ background: C.red, color: "#fff" }}
+          >
+            Reserve
+            <ArrowRight size={13} />
+          </button>
+        </div>
+      </div>
     </div>
   );
 }
