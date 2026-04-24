@@ -89,7 +89,7 @@ export default function RoomsPreview() {
               <GlowCard
                 featured={room.isPopular}
                 glowHue={ROOM_HUE[room.id]}
-                wrapperClassName={`h-full transition-all duration-300 ${room.isPopular ? "scale-105" : ""}`}
+                wrapperClassName={`h-full transition-all duration-300 ${room.isPopular ? "md:scale-105" : ""}`}
                 className="relative flex flex-col px-7 py-8"
               >
                 {/* Most Popular badge */}
@@ -101,7 +101,7 @@ export default function RoomsPreview() {
 
                 {/* Plan name */}
                 <div className="mb-3">
-                  <h2 className="text-[42px] font-extralight tracking-[-0.03em] text-hg-cream font-heading leading-none">
+                  <h2 className="text-[28px] sm:text-[42px] font-extralight tracking-[-0.03em] text-hg-cream font-heading leading-none">
                     {room.planName}
                   </h2>
                   <p className="text-[15px] text-hg-muted mt-2 leading-relaxed">{room.description}</p>
@@ -109,7 +109,7 @@ export default function RoomsPreview() {
 
                 {/* Price */}
                 <div className="my-6 flex items-baseline gap-2">
-                  <span className="text-[48px] font-extralight text-hg-gold font-heading leading-none">
+                  <span className="text-[32px] sm:text-[48px] font-extralight text-hg-gold font-heading leading-none">
                     €{room.price}
                   </span>
                   <span className="text-sm text-hg-muted">/ night</span>

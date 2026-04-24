@@ -100,7 +100,7 @@ function TestimonialCard({
         dragStartX.current = 0;
       }}
       transition={{ duration: 0.4, ease: "easeOut" }}
-      className={`absolute left-0 top-0 flex flex-col gap-4 h-[280px] w-[240px] sm:h-[340px] sm:w-[360px] select-none rounded-2xl p-5 sm:p-7 backdrop-blur-[14px] bg-gradient-to-br from-white/[0.09] to-white/[0.02] border shadow-2xl ${
+      className={`absolute left-0 top-0 flex flex-col gap-3 sm:gap-5 h-[280px] w-[240px] sm:h-[340px] sm:w-[360px] select-none rounded-2xl p-4 sm:p-7 overflow-hidden backdrop-blur-[14px] bg-gradient-to-br from-white/[0.09] to-white/[0.02] border shadow-2xl ${
         isFront
           ? "border-hg-gold/40 cursor-grab active:cursor-grabbing shadow-hg-gold/5"
           : "border-white/10"
@@ -111,7 +111,7 @@ function TestimonialCard({
         <span className="text-hg-muted text-xs">{testimonial.date}</span>
       </div>
 
-      <p className="text-hg-muted text-sm leading-relaxed flex-1 italic">
+      <p className="text-hg-muted text-xs sm:text-sm leading-relaxed flex-1 italic line-clamp-4 sm:line-clamp-none">
         &ldquo;{testimonial.text}&rdquo;
       </p>
 
@@ -122,8 +122,8 @@ function TestimonialCard({
           </span>
         </div>
         <div>
-          <p className="text-hg-cream font-medium text-sm">{testimonial.name}</p>
-          <p className="text-hg-muted text-xs">{testimonial.origin}</p>
+          <p className="text-hg-cream font-medium text-xs sm:text-sm">{testimonial.name}</p>
+          <p className="text-hg-muted text-[10px] sm:text-xs">{testimonial.origin}</p>
         </div>
         {isFront && (
           <span className="ml-auto text-hg-muted/50 text-[10px] tracking-wider">

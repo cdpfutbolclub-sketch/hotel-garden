@@ -170,7 +170,7 @@ export default function DraftWeekPage() {
 
       {/* ── 1. HERO ─────────────────────────────────────────────────────────────── */}
       <section
-        className="relative min-h-screen flex flex-col justify-center px-4 pt-24 pb-20"
+        className="relative min-h-screen flex flex-col justify-center px-4 pt-20 pb-12 sm:pt-24 sm:pb-20"
         style={{ background: BG.hero }}
       >
         {/* Red glow */}
@@ -323,7 +323,7 @@ export default function DraftWeekPage() {
       </section>
 
       {/* ── 3. AVAILABLE DATES ──────────────────────────────────────────────────── */}
-      <section id="dates" className="py-24 px-4" style={{ background: BG.accent }}>
+      <section id="dates" className="py-14 sm:py-24 px-4" style={{ background: BG.accent }}>
         <div className="max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
@@ -440,7 +440,7 @@ export default function DraftWeekPage() {
       </section>
 
       {/* ── 4. THE CLUB — CREDIBILITY ────────────────────────────────────────────── */}
-      <section className="py-24 px-4" style={{ background: BG.dark }}>
+      <section className="py-14 sm:py-24 px-4" style={{ background: BG.dark }}>
         <div className="max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
@@ -607,7 +607,7 @@ export default function DraftWeekPage() {
       </section>
 
       {/* ── 5. WHAT'S INCLUDED ──────────────────────────────────────────────────── */}
-      <section className="py-24 px-4" style={{ background: BG.accent }}>
+      <section className="py-14 sm:py-24 px-4" style={{ background: BG.accent }}>
         <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <motion.div
             initial={{ opacity: 0, x: -16 }}
@@ -632,7 +632,7 @@ export default function DraftWeekPage() {
             initial={{ opacity: 0, x: 16 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="rounded-2xl p-8 backdrop-blur-[14px]"
+            className="rounded-2xl p-5 sm:p-8 backdrop-blur-[14px]"
             style={{
               background: "rgba(204,17,0,0.05)",
               border: `1px solid ${C.redBorderHi}`,
@@ -647,7 +647,7 @@ export default function DraftWeekPage() {
               ))}
             </ul>
             <div
-              className="pt-6 flex items-end justify-between"
+              className="pt-6 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between"
               style={{ borderTop: "1px solid rgba(255,255,255,0.07)" }}
             >
               <div>
@@ -657,7 +657,7 @@ export default function DraftWeekPage() {
               </div>
               <button
                 onClick={() => scrollToForm()}
-                className="inline-flex items-center gap-2 font-bold text-xs px-6 py-3 tracking-[0.2em] uppercase transition-all duration-200 rounded-full group"
+                className="inline-flex items-center justify-center gap-2 font-bold text-xs w-full sm:w-auto px-6 py-3 tracking-[0.2em] uppercase transition-all duration-200 rounded-full group"
                 style={{ background: C.red, color: "#fff" }}
                 onMouseEnter={e => (e.currentTarget.style.background = C.redLight)}
                 onMouseLeave={e => (e.currentTarget.style.background = C.red)}
@@ -671,7 +671,7 @@ export default function DraftWeekPage() {
       </section>
 
       {/* ── 6. WEEKLY SCHEDULE ──────────────────────────────────────────────────── */}
-      <section className="py-24 px-4" style={{ background: BG.dark }}>
+      <section className="py-14 sm:py-24 px-4" style={{ background: BG.dark }}>
         <div className="max-w-5xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
@@ -737,7 +737,7 @@ export default function DraftWeekPage() {
       </section>
 
       {/* ── 7. FAQ ──────────────────────────────────────────────────────────────── */}
-      <section className="py-24 px-4" style={{ background: BG.accent }}>
+      <section className="py-14 sm:py-24 px-4" style={{ background: BG.accent }}>
         <div className="max-w-3xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
@@ -805,7 +805,7 @@ export default function DraftWeekPage() {
       <section
         id="apply"
         ref={formRef}
-        className="py-24 px-4"
+        className="py-14 sm:py-24 px-4"
         style={{ background: BG.dark }}
       >
         <div className="max-w-2xl mx-auto">
@@ -847,7 +847,7 @@ export default function DraftWeekPage() {
           ) : (
             <form
               onSubmit={handleSubmit}
-              className="rounded-2xl p-8 backdrop-blur-[14px] space-y-5"
+              className="rounded-2xl p-5 sm:p-8 backdrop-blur-[14px] space-y-5"
               style={{ background: C.cardBg, border: `1px solid ${C.redBorder}` }}
               noValidate
             >

@@ -30,7 +30,7 @@ export default function AmenitiesGrid() {
           subtitle="Comfort and convenience built into every stay."
         />
 
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
           {amenities.map((item, i) => {
             const Icon = item.icon;
             return (
@@ -40,14 +40,14 @@ export default function AmenitiesGrid() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: i * 0.06 }}
-                className="group flex flex-col items-center text-center gap-4 p-6 rounded-2xl backdrop-blur-[14px] bg-gradient-to-br from-white/[0.06] to-white/[0.01] border border-white/10 hover:border-hg-gold/30 hover:from-white/[0.10] transition-all duration-300"
+                className="group flex flex-col items-center text-center gap-3 p-4 sm:p-6 rounded-2xl backdrop-blur-[14px] bg-gradient-to-br from-white/[0.06] to-white/[0.01] border border-white/10 hover:border-hg-gold/30 hover:from-white/[0.10] transition-all duration-300"
               >
                 <div className="w-12 h-12 rounded-full flex items-center justify-center border border-white/10 group-hover:border-hg-gold/40 bg-white/5 transition-colors duration-200">
                   <Icon size={20} className="text-hg-gold" />
                 </div>
                 <div>
-                  <p className="text-hg-cream font-medium text-sm mb-1">{item.label}</p>
-                  <p className="text-hg-muted text-xs leading-relaxed">{item.desc}</p>
+                  <p className="text-hg-cream font-medium text-xs sm:text-sm mb-1">{item.label}</p>
+                  <p className="text-hg-muted text-xs leading-relaxed hidden sm:block">{item.desc}</p>
                 </div>
               </motion.div>
             );

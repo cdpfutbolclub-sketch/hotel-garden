@@ -90,7 +90,7 @@ export default function BookingBar() {
             </div>
           </div>
 
-          <div className="px-6 pb-6 flex justify-end">
+          <div className="px-6 pb-6 flex justify-center sm:justify-end">
             <button
               onClick={handleSearch}
               className="flex items-center gap-2 bg-hg-gold hover:bg-hg-gold-light text-hg-black font-bold text-xs px-8 py-3 tracking-[0.2em] uppercase transition-colors duration-200 rounded-full cursor-pointer"
