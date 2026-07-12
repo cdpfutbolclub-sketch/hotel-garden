@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Phone, MapPin, CheckCircle } from "lucide-react";
 import SectionHeader from "@/components/shared/SectionHeader";
+import GhlCalendar from "@/components/shared/GhlCalendar";
 
 export default function ContactPage() {
   const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
@@ -109,6 +110,20 @@ export default function ContactPage() {
                 <p className="text-hg-muted text-xs text-center">We typically respond within 24 hours.</p>
               </form>
             )}
+          </div>
+        </div>
+      </div>
+
+      {/* Book a concierge call — bookings land directly in GoHighLevel */}
+      <div className="pb-24 px-4">
+        <div className="max-w-3xl mx-auto">
+          <SectionHeader
+            eyebrow="Prefer to Talk?"
+            title="Book a Concierge Call"
+            subtitle="Pick a time that suits you and one of our team will call to help plan your stay."
+          />
+          <div className="mt-8 rounded-2xl overflow-hidden bg-white/[0.03] border border-white/10 p-2 sm:p-4">
+            <GhlCalendar calendarId="uCWesMXrMgWHPWQqI0Tb" title="Book a concierge call" />
           </div>
         </div>
       </div>

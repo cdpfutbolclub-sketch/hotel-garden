@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
+import { upsertContact } from "@/lib/ghl";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 const HOTEL_EMAIL = process.env.HOTEL_EMAIL || "yacine0skull@gmail.com";
@@ -45,6 +46,22 @@ export async function POST(req: NextRequest) {
         </div>
       `,
     });
+
+    // --- GoHighLevel: capture the enquiry as a warm lead (fires auto-responder).
+    // Fails soft: never block the contact form on a CRM error.
+    try {
+      const [firstName, ...rest] = String(name).trim().split(" ");
+      await upsertContact({
+        email,
+        firstName,
+        lastName: rest.join(" ") || undefined,
+        source: "Website Contact Form",
+        tags: ["warm lead", "website-contact"],
+        fields: { message: subject ? `${subject}: ${message}` : message },
+      });
+    } catch (ghlErr) {
+      console.error("[Contact → GHL] non-fatal", ghlErr);
+    }
 
     return NextResponse.json({ success: true });
   } catch (err) {
