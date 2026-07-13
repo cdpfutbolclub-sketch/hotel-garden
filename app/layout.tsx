@@ -5,9 +5,11 @@ import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import CookieBanner from "@/components/shared/CookieBanner";
+import GhlChatWidget from "@/components/shared/GhlChatWidget";
 
 const FB_PIXEL_ID = process.env.NEXT_PUBLIC_FB_PIXEL_ID;
 const GA4_ID = process.env.NEXT_PUBLIC_GA4_ID;
+const GHL_CHAT_WIDGET_ID = process.env.NEXT_PUBLIC_GHL_CHAT_WIDGET_ID;
 
 const playfair = Playfair_Display_SC({
   variable: "--font-playfair",
@@ -60,6 +62,9 @@ export default function RootLayout({
         <main className="flex-1">{children}</main>
         <Footer />
         <CookieBanner />
+
+        {/* ── GHL Web Chat (AI assistant) ── */}
+        {GHL_CHAT_WIDGET_ID && <GhlChatWidget widgetId={GHL_CHAT_WIDGET_ID} />}
 
         {/* ── Google Analytics 4 ── */}
         {GA4_ID && (
